@@ -27,7 +27,7 @@ test("Clicking on elements", async({page}) => {
 
 test("working with inputs", async ({page}) =>{
     await page.goto("http://zero.webappsecurity.com");
-    
+
     await page.click("#signin_button");
 
     //fill the form
@@ -44,6 +44,21 @@ test("working with inputs", async ({page}) =>{
     await expect(errorMessage).toContainText("Login and/or password are wrong.");
 
 } )
+
+test("assertions", async({page})=>{
+    await page.goto('https://example.com/')
+    await expect(page).toHaveURL('https://example.com/')
+    await expect(page).toHaveTitle('Example Domain')
+
+    //element assertions
+    const element = await page.locator('h1')
+    await expect(element).toBeVisible()
+    await expect(element).toHaveText('Example Domain')
+    await expect(element).toHaveCount(1)
+    
+    const nonExistingElement = await page.locator('h5')
+    await expect(nonExistingElement).not.toBeVisible()
+})
 
 // test("selectors", async ({page}) => {
 //     //text
