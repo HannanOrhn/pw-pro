@@ -26,7 +26,23 @@ test("Clicking on elements", async({page}) => {
 })
 
 test("working with inputs", async ({page}) =>{
+    await page.goto("http://zero.webappsecurity.com");
     
+    await page.click("#signin_button");
+
+    //fill the form
+    await page.fill("#user_login","hannan");
+    await page.fill("#user_password",'123456');
+
+    //click sign in
+    await page.click("text=Sign in");
+
+    //locate by using class and store in the variable
+    const errorMessage = await page.locator(".alert-error");
+
+    //do assertion
+    await expect(errorMessage).toContainText("Login and/or password are wrong.");
+
 } )
 
 // test("selectors", async ({page}) => {
