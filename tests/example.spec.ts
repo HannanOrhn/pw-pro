@@ -9,43 +9,8 @@ test("simple basic test", async({page}) => {
     await expect(pageTitle).toContainText("Example Domain");
 })
 
-test("Clicking on elements", async({page}) => {
-    await page.goto("http://zero.webappsecurity.com");
 
-    //locate by using id
-    await page.click("#signin_button");
-
-    //locate by using text
-    await page.click("text=Sign in");
-
-    //locate by using class and store in the variable
-    const errorMessage = await page.locator(".alert-error");
-
-    //do assertion
-    await expect(errorMessage).toContainText("Login and/or password are wrong.");
-})
-
-test("working with inputs", async ({page}) =>{
-    await page.goto("http://zero.webappsecurity.com");
-
-    await page.click("#signin_button");
-
-    //fill the form
-    await page.fill("#user_login","hannan");
-    await page.fill("#user_password",'123456');
-
-    //click sign in
-    await page.click("text=Sign in");
-
-    //locate by using class and store in the variable
-    const errorMessage = await page.locator(".alert-error");
-
-    //do assertion
-    await expect(errorMessage).toContainText("Login and/or password are wrong.");
-
-} )
-
-test("assertions", async({page})=>{
+test.only("assertions", async({page})=>{
     await page.goto('https://example.com/')
     await expect(page).toHaveURL('https://example.com/')
     await expect(page).toHaveTitle('Example Domain')
@@ -60,28 +25,71 @@ test("assertions", async({page})=>{
     await expect(nonExistingElement).not.toBeVisible()
 })
 
-// test("selectors", async ({page}) => {
-//     //text
-//     await page.click("text=some text");
+test.skip("selectors", async ({page}) => {
+    //text
+    await page.click("text=some text");
 
-//     //css 
-//     await page.click('button');
+    //css 
+    await page.click('button');
 
-//     //id
-//     await page.click('#id');
+    //id
+    await page.click('#id');
 
-//     //class
-//     await page.click('.class');
+    //class
+    await page.click('.class');
 
-//     //only visible css
-//     await page.click('.submit-button:visible');
+    //only visible css
+    await page.click('.submit-button:visible');
 
-//     //combinations
-//     await page.click('#username .firt');
+    //combinations
+    await page.click('#username .firt');
 
-//     //xpath
-//     await page.click('//button');
-// })
+    //xpath
+    await page.click('//button');
+})
+
+//grouping the test scripts
+
+test.describe("my first test suit", ()=>{
+
+    test("Clicking on elements", async({page}) => {
+        await page.goto("http://zero.webappsecurity.com");
+    
+        //locate by using id
+        await page.click("#signin_button");
+    
+        //locate by using text
+        await page.click("text=Sign in");
+    
+        //locate by using class and store in the variable
+        const errorMessage = await page.locator(".alert-error");
+    
+        //do assertion
+        await expect(errorMessage).toContainText("Login and/or password are wrong.");
+    })
+    
+    test("working with inputs", async ({page}) =>{
+        await page.goto("http://zero.webappsecurity.com");
+    
+        await page.click("#signin_button");
+    
+        //fill the form
+        await page.fill("#user_login","hannan");
+        await page.fill("#user_password",'123456');
+    
+        //click sign in
+        await page.click("text=Sign in");
+    
+        //locate by using class and store in the variable
+        const errorMessage = await page.locator(".alert-error");
+    
+        //do assertion
+        await expect(errorMessage).toContainText("Login and/or password are wrong.");
+    
+    } )
+
+})
+
 
 /*
 Run test → npx playwright test
