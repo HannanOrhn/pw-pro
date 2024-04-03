@@ -17,9 +17,9 @@ test('Assertion practice @myTag', async ({page})=>{
 
 test("simple basic test2 @myTag", async({page}) => {
     //codes go here
-    await page.goto("https://www.example.com");
+    await page.goto("https://www.example.com")
 
-    const pageTitle = await page.locator("h1");
+    const pageTitle = await page.locator("h1")
 
-    await expect(pageTitle).toContainText("Example Domain");
+    await expect(pageTitle).toContainText("Example Domain")
 })

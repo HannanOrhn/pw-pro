@@ -9,8 +9,8 @@ test("simple basic test", async({page}) => {
     await expect(pageTitle).toContainText("Example Domain");
 })
 
-
-test.only("assertions", async({page})=>{
+//test.only("assertions", async({page})=>{
+test("assertions", async({page})=>{
     await page.goto('https://example.com/')
     await expect(page).toHaveURL('https://example.com/')
     await expect(page).toHaveTitle('Example Domain')
