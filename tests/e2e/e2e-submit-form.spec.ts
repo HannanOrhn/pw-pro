@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test'
 import { beforeEach } from 'node:test'
 
-test.describe.only("feedback form",()=>{
+test.describe("feedback form",()=>{
 
         test.beforeEach(async ({page})=>{
             await page.goto('http://zero.webappsecurity.com/index.html')
@@ -32,7 +32,7 @@ test.describe.only("feedback form",()=>{
             await page.fill('#comment','some feedback test ....')
             await page.click('input[name="submit"]')
 
-            //another shot way to do assertion
+            //another short way to do assertion
             await page.waitForSelector('#feedback-title')
             
         })
