@@ -7,7 +7,7 @@ const config: PlaywrightTestConfig={
         //browser specific options
         headless: true, //it'll run outomatically in headless mode
         viewport: {width: 1280, height:720,}, //size of the browser
-        actionTimeout: 15000, //timeout for all actions such as click
+        actionTimeout: 10000, //timeout for all actions such as click
         ignoreHTTPSErrors:true,
         video: "off",
         screenshot: "off"
