@@ -48,7 +48,7 @@ test.beforeEach(async({page})=>{
             //take ss of single element    
         const element = await page.$('h1')
         await element?.screenshot({path:"single_element_screenshot.png"})
-    
+  
     })
 })
 
