@@ -1,7 +1,7 @@
 import{test,expect} from '@playwright/test'
 import exp from 'constants'
 
-test.describe.only('transfer founds',()=>{
+test.describe('transfer founds',()=>{
 
 test.beforeEach(async({page})=>{
     await page.goto('http://zero.webappsecurity.com/index.html')
