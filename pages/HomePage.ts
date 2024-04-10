@@ -7,6 +7,7 @@ export class HomePage{
  readonly moreServicesLink: Locator
  readonly searchBox: Locator
  readonly numberOfLinks: Locator
+ readonly feedBackLink:Locator
 
  //create a constructor in order to initialize elements
  constructor(page:Page){
@@ -15,6 +16,7 @@ export class HomePage{
     this.moreServicesLink = page.locator('text=More Services')
     this.searchBox = page.locator('#searchTerm')
     this.numberOfLinks = page.locator('li > a')
+    this.feedBackLink = page.locator('#feedback')
  }
 
  async visit(){
