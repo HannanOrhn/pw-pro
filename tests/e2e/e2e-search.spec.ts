@@ -1,6 +1,6 @@
 import{test,expect} from '@playwright/test'
 
-test.describe.only('search result',()=>{
+test.describe('search result',()=>{
     test('should find search result',async({page})=>{
         await page.goto('http://zero.webappsecurity.com/index.html')
         await page.fill('#searchTerm','bank')
