@@ -3,7 +3,7 @@ import { LoginPage } from "../../pages/LoginPage"
 import { log } from "console"
 import { HomePage } from "../../pages/HomePage"
 
-test.describe.parallel.only("Login/logout flow", ()=>{
+test.describe.parallel("Login/logout flow", ()=>{
     //we created object from LoginPage
     let loginPage: LoginPage
     let homePage: HomePage

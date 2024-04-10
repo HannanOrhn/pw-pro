@@ -1,12 +1,13 @@
 import{test,expect} from '@playwright/test'
+import { HomePage } from '../../pages/HomePage'
 
-test.describe('search result',()=>{
+test.describe.only('search result',()=>{
     test('should find search result',async({page})=>{
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.fill('#searchTerm','bank')
-        await page.keyboard.press('Enter')
+        let homePage: HomePage = new HomePage(page)
+        await homePage.visit()
+        await homePage.searchFor('bank')
 
-        const numberOfLinks = await page.locator('li > a')
+        const numberOfLinks = await homePage.numberOfLinks
         await expect(numberOfLinks).toHaveCount(2)
     })
 })
