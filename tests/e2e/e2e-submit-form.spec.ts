@@ -3,7 +3,7 @@ import { beforeEach } from 'node:test'
 import { FeedbackPage } from '../../pages/FeedbackPage'
 import { HomePage } from '../../pages/HomePage'
 
-test.describe.only("feedback form",()=>{
+test.describe("feedback form",()=>{
     let feedbackPage: FeedbackPage
     let homePage: HomePage
 

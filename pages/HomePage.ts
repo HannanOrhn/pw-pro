@@ -8,7 +8,8 @@ export class HomePage{
  readonly searchBox: Locator
  readonly numberOfLinks: Locator
  readonly feedBackLink:Locator
-
+readonly transferFounds: Locator
+readonly accountActivityLink: Locator
  //create a constructor in order to initialize elements
  constructor(page:Page){
     this.page= page
@@ -17,6 +18,8 @@ export class HomePage{
     this.searchBox = page.locator('#searchTerm')
     this.numberOfLinks = page.locator('li > a')
     this.feedBackLink = page.locator('#feedback')
+    this.transferFounds = page.locator('#transfer_funds_link')
+    this.accountActivityLink = page.locator('#account_activity_link')
  }
 
  async visit(){
