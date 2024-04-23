@@ -42,6 +42,8 @@ export class Navbar {
       case 'Online Statements':
         await this.onlineStatementsTab.click()
         break
+      default:
+        throw new Error("This tab does not exist..")
     }
   }
 }
