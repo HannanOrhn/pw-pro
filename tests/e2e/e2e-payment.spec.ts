@@ -1,4 +1,4 @@
-import{test, expect} from '@playwright/test'
+import{test} from '@playwright/test'
 import { HomePage } from '../../pages/HomePage'
 import { LoginPage } from '../../pages/LoginPage'
 import { Navbar } from '../../pages/components/Navbar'
@@ -27,7 +27,7 @@ test.describe("New payment", ()=>{
 
     test("should send a new payment", async({page})=>{
         //select pay bills tab
-        await navbar.clickOnTab("Pay Bills") //in navbar
+        navbar.clickOnTab("Pay Bills") //in navbar
 
         await paymentPage.createPayments("6","5000","2024-01-02","something")
         await paymentPage.assertSuccessMessage()

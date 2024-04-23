@@ -1,8 +1,9 @@
 import{expect, Locator, Page} from '@playwright/test'
+import { AbstractPage } from './AbstractPage.spec'
 
-export class LoginPage{
+export class LoginPage extends AbstractPage{
     //define selectors
-    readonly page: Page
+    //readonly page: Page
     readonly usernameInput: Locator
     readonly passwordInput: Locator
     readonly submitButton: Locator
@@ -10,7 +11,8 @@ export class LoginPage{
 
     //Init selectors using constructor --> Selenium-PageFactory.init()
     constructor(page: Page){
-        this.page = page
+       // this.page = page -> since we extended abstract class we don't need it
+        super(page)//constructor call from parent
         this.usernameInput = page.locator('#user_login')
         this.passwordInput = page.locator('#user_password')
         this.submitButton = page.locator('text=Sign in')

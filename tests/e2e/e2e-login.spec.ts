@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test"
 import { LoginPage } from "../../pages/LoginPage"
-import { log } from "console"
 import { HomePage } from "../../pages/HomePage"
 
 test.describe.parallel("Login/logout flow", ()=>{
@@ -23,11 +22,12 @@ test.describe.parallel("Login/logout flow", ()=>{
     //nagative
     test("negative scenario for login", async({page})=>{
         await homePage.clickOnSignInButton()
+        await page.goBack()
         // await page.fill('#user_login','invalid user anme')
         // await page.fill('#user_password','invalid password')
         // await page.click('text=Sign in')
         await loginPage.login("invalidUsername","invalidPassword")
-
+        await loginPage.wait(3000)
         //const error_message = await page.locator('.alert-error')
         // await expect(error_message).toContainText('Login and/or password are wrong.')
         await loginPage.assertErrorMessage()
