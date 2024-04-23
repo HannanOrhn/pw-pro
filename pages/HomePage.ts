@@ -10,6 +10,7 @@ export class HomePage{
  readonly feedBackLink:Locator
 readonly transferFounds: Locator
 readonly accountActivityLink: Locator
+readonly accountSummaryLink: Locator
  //create a constructor in order to initialize elements
  constructor(page:Page){
     this.page= page
@@ -20,7 +21,8 @@ readonly accountActivityLink: Locator
     this.feedBackLink = page.locator('#feedback')
     this.transferFounds = page.locator('#transfer_funds_link')
     this.accountActivityLink = page.locator('#account_activity_link')
- }
+    this.accountSummaryLink = page.locator('#account_summary_link')
+  }
 
  async visit(){
     await this.page.goto('http://zero.webappsecurity.com/') 

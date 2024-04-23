@@ -2,7 +2,7 @@ import{test,expect} from '@playwright/test'
 import{LoginPage} from '../../pages/LoginPage'
 import{HomePage} from '../../pages/HomePage'
 
-test.describe.only('filter transactions', ()=>{
+test.describe('filter transactions', ()=>{
     let loginPage: LoginPage
     let homePage: HomePage
 
@@ -33,6 +33,9 @@ test.describe.only('filter transactions', ()=>{
         await page.selectOption('#aa_accountId','4')
         const loanAccount = await page.locator('#all_transactions_for_account tbody tr')
         await expect(checking_account).toHaveCount(2)
-    })
 
+        await page.selectOption('#aa_accountId','6')
+        const noResult = await page.locator('.well')
+        await expect(noResult).toBeVisible()
+    })
 })
