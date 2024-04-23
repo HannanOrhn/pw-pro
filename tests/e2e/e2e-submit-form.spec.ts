@@ -1,24 +1,26 @@
 import {test,expect} from '@playwright/test'
-import { beforeEach } from 'node:test'
+import { FeedbackPage } from '../../pages/FeedbackPage'
+import { HomePage } from '../../pages/HomePage'
 
 test.describe("feedback form",()=>{
+    let feedbackPage: FeedbackPage
+    let homePage: HomePage
 
         test.beforeEach(async ({page})=>{
-            await page.goto('http://zero.webappsecurity.com/index.html')
-            await page.click('#feedback')
+            feedbackPage = new FeedbackPage(page)
+            homePage = new HomePage(page)
+            await homePage.visit()
+            await homePage.feedBackLink.click()
 
             await expect(page).toHaveURL('http://zero.webappsecurity.com/feedback.html')
         })
 
         test('Reset feedback form',async ({page})=>{
-            await page.fill('#name','testuser')
-            await page.fill('#email','test@gmail.com')
-            await page.fill('#subject','feedback subject')
-            await page.fill('#comment','some feedback test ....')
-            await page.click('input[name="clear"]')
+            await feedbackPage.fillForm('testuser','test@gmail.com','feedback subject','something bla bla ..')
+            await feedbackPage.clearForm()
 
-            const nameInput = await page.locator('#name')
-            const comment = await page.locator('#comment')
+            const nameInput = await feedbackPage.name
+            const comment = await feedbackPage.comment
 
             await expect(nameInput).toBeEmpty()
             await expect(comment).toBeEmpty()
@@ -26,11 +28,8 @@ test.describe("feedback form",()=>{
         })
 
         test('Submit feedback form', async ({page})=>{
-            await page.fill('#name','testuser')
-            await page.fill('#email','test@gmail.com')
-            await page.fill('#subject','feedback subject')
-            await page.fill('#comment','some feedback test ....')
-            await page.click('input[name="submit"]')
+            await feedbackPage.fillForm('testuser','test@gmail.com','feedback subject','something bla bla ..')
+            await feedbackPage.submitForm
 
             //another short way to do assertion
             await page.waitForSelector('#feedback-title')

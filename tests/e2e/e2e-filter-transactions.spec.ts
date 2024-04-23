@@ -1,24 +1,29 @@
 import{test,expect} from '@playwright/test'
+import{LoginPage} from '../../pages/LoginPage'
+import{HomePage} from '../../pages/HomePage'
 
-test.describe.only('filter transactions', ()=>{
+test.describe('filter transactions', ()=>{
+    let loginPage: LoginPage
+    let homePage: HomePage
 
     test.beforeEach(async({page})=>{
-        await page.goto('http://zero.webappsecurity.com/index.html')
-        await page.click('#signin_button')
-        await page.fill('#user_login','username')
-        await page.fill('#user_password','password')
-        await page.click('text=Sign in')
+        loginPage = new LoginPage(page)
+        homePage = new HomePage(page)
+
+        await homePage.visit()
+        await homePage.signinButton.click()
+        await loginPage.login('username','password')
     
         await page.goBack()
     
-        await page.click('text=More Services')
-        const transfer_founds = await page.locator('#transfer_funds_link')
+        await homePage.moreServicesLink.click()
+        const transfer_founds = await homePage.transferFounds
         await expect(transfer_founds).toBeVisible()
     
     })
 
     test('filter transactions',async ({page})=>{
-        await page.click('#account_activity_link')
+        await homePage.accountActivityLink.click()
 
         await page.selectOption('#aa_accountId','2')
 
@@ -28,6 +33,9 @@ test.describe.only('filter transactions', ()=>{
         await page.selectOption('#aa_accountId','4')
         const loanAccount = await page.locator('#all_transactions_for_account tbody tr')
         await expect(checking_account).toHaveCount(2)
-    })
 
+        await page.selectOption('#aa_accountId','6')
+        const noResult = await page.locator('.well')
+        await expect(noResult).toBeVisible()
+    })
 })
