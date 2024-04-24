@@ -1,5 +1,5 @@
 import{expect, Locator, Page} from '@playwright/test'
-import { AbstractPage } from './AbstractPage.spec'
+import { AbstractPage } from './AbstractPage.ts'
 
 export class LoginPage extends AbstractPage{
     //define selectors
@@ -9,6 +9,7 @@ export class LoginPage extends AbstractPage{
     readonly submitButton: Locator
     readonly errorMessage: Locator
 
+    
     //Init selectors using constructor --> Selenium-PageFactory.init()
     constructor(page: Page){
        // this.page = page -> since we extended abstract class we don't need it

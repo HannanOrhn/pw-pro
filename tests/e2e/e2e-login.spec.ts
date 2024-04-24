@@ -1,11 +1,16 @@
 import { test, expect } from "@playwright/test"
 import { LoginPage } from "../../pages/LoginPage"
 import { HomePage } from "../../pages/HomePage"
+import * as dotenv from 'dotenv';
+
 
 test.describe.parallel("Login/logout flow", ()=>{
     //we created object from LoginPage
     let loginPage: LoginPage
     let homePage: HomePage
+
+    
+    dotenv.config()
 
     //before Hook
     test.beforeEach(async({page})=>{

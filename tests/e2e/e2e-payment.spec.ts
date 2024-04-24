@@ -2,7 +2,7 @@ import{test} from '@playwright/test'
 import { HomePage } from '../../pages/HomePage'
 import { LoginPage } from '../../pages/LoginPage'
 import { Navbar } from '../../pages/components/Navbar'
-import { PaymentPage } from '../../pages/PaymentPage.spec'
+import { PaymentPage } from '../../pages/PaymentPage'
 
 test.describe("New payment", ()=>{
 
