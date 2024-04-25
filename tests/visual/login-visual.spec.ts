@@ -2,7 +2,7 @@ import{test} from '@playwright/test'
 import { LoginPage } from '../../pages/LoginPage'
 import * as dotenv from 'dotenv'
 
-test.describe.only('login page visual test',()=>{
+test.describe('login page visual test',()=>{
     let loginPage: LoginPage
     dotenv.config(); 
 
