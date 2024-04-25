@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test.describe.only('visual regression testing example', () => {
+test.describe('visual regression testing example', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('https://www.example.com')
   })
@@ -21,7 +21,4 @@ test.describe.only('visual regression testing example', () => {
     throw new Error("The 'h1' element was not found on the page.");
   }
 })
-
-
-
 })
